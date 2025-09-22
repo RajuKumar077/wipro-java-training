@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="21.957" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-06T15:55:24.234608100Z">
+<testcase classname="Placeorder" name="Placing the Order Successfully - #1.1" time="20.538">
+<system-out><![CDATA[
+Given user is on login page.................................................passed
+When user enters username "standard_user" and password "secret_sauce" and click login button.passed
+And user selects the product................................................passed
+And user clicks add to cart button..........................................passed
+And user clicks cart button.................................................passed
+And user clicks checkout button.............................................passed
+And user enter user information "Raju", "Kumar", and "841426" and click continue button.passed
+Then user verifies product information and click Finish button..............passed
+Then user verifies checkout complete message................................passed
+Then user logout............................................................passed
+]]></system-out>
+</testcase>
+</testsuite>
