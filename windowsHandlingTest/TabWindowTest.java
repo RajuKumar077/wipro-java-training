@@ -1,0 +1,86 @@
+package windowsHandlingTest;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class TabWindowTest {
+	WebDriver driver = new ChromeDriver();
+
+	@BeforeMethod
+	public void beforeMethod() {
+
+		driver.manage().window().maximize();
+
+		driver.get("https://demo.automationtesting.in/Windows.html");
+		sleep(2000);
+
+	}
+
+	@Test
+	public void f() throws InterruptedException {
+
+		driver.findElement(By.xpath("//a[contains(@href,'#Seperate') ]")).click();
+
+		System.out.println("Title: " + driver.getTitle());
+
+		// Saving the parent Window
+		String currWindow = driver.getWindowHandle();
+		System.out.println("Current Window: " + currWindow);
+
+		sleep(2000);
+		
+		// this will open new tab
+		driver.findElement(By.xpath("//button[contains(@class,'btn btn-primary') ]")).click();
+
+		// Get all windows handles
+		Set<String> allWindows = driver.getWindowHandles();
+
+		// Switch to child window
+		for (String Childwindow : allWindows) {
+			if (!Childwindow.equals(currWindow)) {
+				driver.switchTo().window(Childwindow);
+
+				// Saving the Child Window
+				String Childwindow2 = driver.getWindowHandle();
+				System.out.println("Child Window: " + Childwindow2);
+
+				System.out.println("Switched to New window: " + driver.getTitle());
+				break;
+			}
+
+		}
+		//Perforn action in the new tab
+		System.out.println("New Tab Url: "+ driver.getCurrentUrl());
+		
+		// now closing the child window
+		sleep(3000);
+		driver.close();
+        
+		//Switch back to parent url/Tab
+		driver.switchTo().window(currWindow);
+		System.out.println("Back to Parent window: " + driver.getTitle());
+
+	}
+
+	@AfterMethod
+	public void afterMethod() throws InterruptedException {
+		Thread.sleep(800);
+		driver.quit();
+
+	}
+
+	private void sleep(int msec) {
+		try {
+			Thread.sleep(msec);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
