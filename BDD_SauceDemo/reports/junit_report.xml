@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="23.031" tests="2" skipped="0" failures="1" errors="0" timestamp="2025-03-06T05:13:48.560541900Z">
+<testcase classname="Login Functionality" name="Login is successful" time="11.746">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username as "standard_user" and password as "secret_sauce" and clicks the login button.passed
+Then the user validates the product text....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Login is failure" time="10.764">
+<failure/>
+<system-out><![CDATA[
+Given the user is on login page.............................................passed
+When the user enters incorrect username and password........................undefined
+Then the user validates the error message...................................skipped
+]]></system-out>
+</testcase>
+</testsuite>
